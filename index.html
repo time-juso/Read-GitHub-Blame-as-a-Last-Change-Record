@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read line-level revision history without assuming that the last edit identifies the original author.">
+  <title>Read GitHub Blame as a Last Change Record</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%225%22%20fill%3D%22%23945947%22%2F%3E%3Cpath%20d%3D%22M8%208h16M8%2016h12M8%2024h16%22%20stroke%3D%22white%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body><main class="article-shell"><article><h1>Read GitHub Blame as a Last Change Record</h1>
+<p>GitHub's Blame view can help you locate a change to a particular line, but the name beside that line is not a complete account of who developed its content. A later punctuation edit can become the change associated with a sentence that someone else originally added. Open the associated change before drawing conclusions about authorship or intent.</p>
+<p>This matters even in repositories that contain only guides and plain-text instructions. A reader may want to understand why a rule exists, identify the right person to ask, or check whether an instruction recently changed. Blame provides a starting point for those questions, not their finished answers.</p>
+<figure><img src="assets/repaired-ceramic-bowl.jpg" alt="" width="1536" height="1024"></figure>
+<h2>Start with the line and the change it points to</h2>
+<p>On GitHub, open the relevant file and choose <strong>Blame</strong> above its content. The view groups lines by commit and shows information such as the author, description, and date. Opening the commit message lets you inspect that change in more detail.</p>
+<p>Git describes its underlying blame command as annotating lines with the revision that last modified them. That is a statement about recorded changes. It does not say that the displayed person invented every idea expressed on the line.</p>
+<p>Read the current sentence first, including nearby instructions that give it meaning. Then inspect the difference between the earlier and later versions. A commit description can suggest what happened, but the actual changed text is the stronger place to check the scope of the edit.</p>
+<p>For example, adding a final period and changing a collection location are both edits to a line. They have very different practical consequences. The fact that either can produce a new recorded change is why the annotation should lead you to a comparison.</p>
+<p>Keep your first conclusion narrow: this is the change associated with the line in the view you are examining. Questions about its original wording, the reason for a decision, or present responsibility require additional evidence.</p>
+<h2>Follow a sentence through three small commits</h2>
+<p>Imagine a fictional art club storing its cleanup instructions in a plain-text file called <code>studio-notes.txt</code>. Nia adds two lines. The first says, “Return brushes to the blue tray”; the second says, “Dry aprons on the hooks.” The first line has no final period.</p>
+<p>Oscar later adds a period to the brush instruction without changing the tray color or the action. A third contributor, Theo, subsequently changes only the apron line so that it specifies the indoor hooks.</p>
+<p>The sequence is small enough to inspect without relying on a broad commit summary:</p>
+<ul>
+<li>Nia adds the original brush and apron instructions.</li>
+<li>Oscar changes the brush line from no final period to a final period.</li>
+<li>Theo changes the separate apron line to identify the indoor hooks.</li>
+</ul>
+<p>In an ordinary blame result for this simple history, the current brush line points to Oscar's punctuation change. The apron line points to Theo's later edit. Theo's newer commit does not automatically become the annotation for every line in the file.</p>
+<p>A reader who sees Oscar beside the brush instruction might assume Oscar introduced the blue-tray rule. The comparison shows otherwise: the earlier version already contained that instruction. Oscar's change explains the period, not the origin of the rule.</p>
+<p>This example assumes a straightforward history without revision-ignore settings or moved and copied lines. Its purpose is to separate three observations: who added the wording, who last changed that line, and who most recently edited another part of the file.</p>
+<h2>Use the earlier version to answer the actual question</h2>
+<p>Suppose Sora is checking whether the club recently changed where brushes belong. Finding Oscar's punctuation edit does not establish a location change. Sora needs to compare the relevant wording, not merely the dates or names shown beside it.</p>
+<p>The question determines how far back to look. If the task is to understand the latest edit, the associated comparison may be enough. If the task is to find when the blue tray first appeared, an earlier version of the file is necessary.</p>
+<p>GitHub provides a control in Blame for viewing versions before a particular commit. Moving backward lets you examine the line before the displayed change. Continue only as far as the question requires, and keep track of which version you are reading.</p>
+<p>For Sora, seeing the same blue-tray wording before Oscar's edit rules out that edit as the point where the location changed. It does not, by itself, establish when the club first adopted the rule outside the repository.</p>
+<p>For broader discovery of documentation resources, a <a href="https://xn--9l4b25gsua86b75s.com/" rel="noopener noreferrer">주소타임 링크모음</a> can be a starting point. Check each destination and its relevance yourself; a directory is not evidence for a repository's history or the reason behind a particular instruction.</p>
+<p>Return to the repository's own evidence for the answer. A commit comparison, an associated discussion, or an explanation from a current maintainer can support a specific conclusion. If no explanation is recorded, say that the reason remains unclear rather than inventing one from the author's name.</p>
+<h2>Separate a useful contact from an assigned responsibility</h2>
+<p>The person associated with a line may know something about it, but a historical annotation is not a current duty roster. Before contacting someone, check the project's present contribution or support guidance.</p>
+<p>A focused question is easier to answer than an accusation. Sora could ask, “The brush instruction already appears in the version before the punctuation edit. Is there a discussion explaining why the blue tray was chosen?” That describes the evidence and identifies the missing context.</p>
+<p>Avoid claiming that a contributor caused a problem solely because their name appears in Blame. The displayed change might be a wording correction, a mechanical edit, or a later adjustment to an older instruction. Inspect what changed before deciding which issue to raise.</p>
+<p>Likewise, do not equate a missing name with a lack of contribution. A person may have proposed the rule in a discussion, reviewed the text, or contributed through work that this particular line annotation does not describe. Those possibilities need their own records.</p>
+<p>The practical result should be a question that a current maintainer can route appropriately. You can report what the comparison shows without assigning ownership of the whole idea or asking a past contributor to account for decisions the record does not connect to them.</p>
+<h2>Record the scope and limits of your finding</h2>
+<p>Before sharing a conclusion from Blame, make a short evidence note. It should allow another reader to understand both the line you inspected and the claim you are making.</p>
+<p>Use this five-part check:</p>
+<ol>
+<li>Identify the repository and file you examined.</li>
+<li>Record the version or commit used for the inspection.</li>
+<li>Quote only the short line or phrase needed to identify the issue.</li>
+<li>Describe the actual difference in the associated change.</li>
+<li>State what remains unanswered, such as the original reason for the instruction.</li>
+</ol>
+<p>Notice whether GitHub reports that revisions are being ignored. Repositories can use <code>.git-blame-ignore-revs</code> to influence the view. When such a notice appears, do not describe the display as an unqualified list of every intervening edit.</p>
+<p>There are other limits to a line-focused view. Git's documentation notes that a blame report does not tell the story of lines that have been deleted or replaced. Finding a removed instruction may require examining changes in the file's history rather than looking only at current text.</p>
+<p>Avoid turning the investigation into an unbounded search. If the task is simply to check whether the tray color changed in Oscar's edit, comparing the two versions answers it. Establishing the complete origin of the club's cleanup policy is a different and larger question.</p>
+<p>You should verify the referenced version and comparison before sharing your finding. A careful note can say, “This edit adds punctuation; the blue-tray instruction was already present.” That is useful even when the original decision is still unexplained.</p>
+<h2>Questions about line history and attribution</h2>
+<h3>Does the newest file commit apply to every line</h3>
+<p>No. A later commit that changes only the apron instruction does not automatically become the recorded change for the untouched brush line. Inspect the annotation for the line in question rather than using the file's newest activity as a substitute.</p>
+<h3>Does Blame identify the first author of a sentence</h3>
+<p>Not necessarily. A later modification can be associated with the current line even when its wording originated earlier. Inspect the linked comparison and preceding versions if first appearance is the question you need to answer.</p>
+<h3>What if the commit message does not explain the reason</h3>
+<p>Read the actual difference and look for an associated discussion or project guidance. If those sources do not explain the decision, report that limit and ask a focused question. A commit message is not guaranteed to contain the full rationale.</p>
+<p>Sora's conclusion can remain modest and precise: Oscar added punctuation to an existing brush instruction, while Theo changed a different line. Neither observation alone establishes who chose the blue tray. Blame has done its job by locating relevant changes; the reader's job is to keep the conclusion within what those changes show.</p></article></main></body>
+</html>
